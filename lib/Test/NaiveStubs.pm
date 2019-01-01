@@ -1,6 +1,6 @@
 package Test::NaiveStubs;
 
-# ABSTRACT: Generate test stubs for methods
+# ABSTRACT: Generate test stubs for methods and functions
 
 our $VERSION = '0.0300';
 
@@ -21,8 +21,8 @@ use Class::Sniff;
 
 =head1 DESCRIPTION
 
-C<Test::NaiveStubs> generates a test file of stubs for exercising all the
-methods (not functions) of a given B<class>.
+C<Test::NaiveStubs> generates a test file of stubs exercising all the methods or
+functions of a given module (the B<class> attribute).
 
 Unfortunately L<Class::Sniff> returns I<imported> methods as well as the ones in
 the B<class> you have given.  So you will have to remove those lines from the
