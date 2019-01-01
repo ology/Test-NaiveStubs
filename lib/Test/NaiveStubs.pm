@@ -12,7 +12,7 @@ use Class::Sniff;
 
 =head1 SYNOPSIS
 
-  use Foo::Bar;
+  #use Foo::Bar; # <- Uncomment to load the Foo::Bar module
   use Test::NaiveStubs;
 
   my $tns = Test::NaiveStubs->new(
