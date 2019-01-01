@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods and functions
 
-our $VERSION = '0.0500';
+our $VERSION = '0.0501';
 
 use Moo;
 use strictures 2;
@@ -19,14 +19,18 @@ use Class::Sniff;
   );
   $tns->create_test;
 
+  # Or on the command-line:
+  perl -MData::Dumper -MFoo::Bar -MTest::NaiveStubs -E '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->gather_subs; say Dumper $tns->subs'
+  perl -MFoo::Bar -MTest::NaiveStubs -E '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->create_test'
+
 =head1 DESCRIPTION
 
 C<Test::NaiveStubs> generates a test file of stubs exercising all the methods or
 functions of the B<module> attribute.
 
-Unfortunately L<Class::Sniff> returns I<imported> methods as well as the ones in
-the B<module> you have given.  So you will have to remove those lines from the
-generated test file by hand.
+Unfortunately L<Class::Sniff> returns Iny <imported> methods as well as the ones
+in the B<module> you have given.  So you will have to remove those lines from
+the generated test file by hand.
 
 For a more powerful alternative, check out L<Test::StubGenerator>.
 
