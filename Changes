@@ -1,4 +1,8 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Improved documentation.
+    - Made the class attribute required.
+
+0.0100 2018-12-31 23:57:17
     - Minted by Dist::Zilla.
