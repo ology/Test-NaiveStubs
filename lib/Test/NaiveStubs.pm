@@ -66,6 +66,20 @@ sub _build_name {
     return "$name.t";
 }
 
+=head2 subs
+
+  $subs = $tns->subs;
+
+The subroutines in the given B<module>.  This is a computed attribute and as
+such, constructor arguments will be ignored.
+
+=cut
+
+has subs => (
+    is       => 'rw',
+    init_arg => undef,
+);
+
 =head1 METHODS
 
 =head2 new()
@@ -91,7 +105,7 @@ sub gather_methods {
     my %methods;
     @methods{@methods} = undef;
 
-    return \%methods;
+    $self->subs( \%methods );
 }
 
 =head2 unit_test()
@@ -114,7 +128,7 @@ sub unit_test {
             . "\n"
             . 'isa_ok $obj, "' . $self->module . '";';
     }
-    else {
+    elsif ( grep { 'new' } $self->subs ) {
         $test = 'ok $obj->can("' . $subroutine . '"), "' . $subroutine . '";';
     }
 
@@ -146,17 +160,18 @@ use Test::More;
 
 END
 
-    my $methods = $self->gather_methods;
+    # Set the subs attribute
+    $self->gather_methods;
 
-    if ( exists $methods->{new} ) {
-        delete $methods->{new};
+    if ( exists $self->subs->{new} ) {
+        delete $self->subs->{new};
         my $test = $self->unit_test('new');
         $text .= "$test\n\n";
     }
 
-    for my $method ( sort keys %$methods ) {
-        next if $method =~ /^_/;
-        my $test = $self->unit_test($method);
+    for my $sub ( sort keys %{ $self->subs } ) {
+        next if $sub =~ /^_/;
+        my $test = $self->unit_test($sub);
         $text .= "$test\n\n";
     }
 
