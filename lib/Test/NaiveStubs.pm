@@ -27,11 +27,11 @@ use Sub::Identify 'stash_name';
 
   # perl -I/path/to/Foo-Bar/lib eg/stub Foo::Bar
 
-  # perl -MData::Dumper -MFoo::Bar -MTest::NaiveStubs -E \
-  #   '$t = Test::NaiveStubs->new(module => "Foo::Bar"); $t->gather_subs; say Dumper $t->subs'
-
   # perl -MFoo::Bar -MTest::NaiveStubs -E \
   #   '$t = Test::NaiveStubs->new(module => "Foo::Bar"); $t->create_test'
+
+  # perl -MData::Dumper -MFoo::Bar -MTest::NaiveStubs -E \
+  #   '$t = Test::NaiveStubs->new(module => "Foo::Bar"); $t->gather_subs; say Dumper $t->subs'
 
 =head1 DESCRIPTION
 
