@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods
 
-our $VERSION = '0.0101';
+our $VERSION = '0.0102';
 
 use Moo;
 use strictures 2;
@@ -17,6 +17,7 @@ use Class::Sniff;
     class => 'Foo::Bar',
     name  => 't/foo-bar.t',
   );
+  $tns->create_test;
 
 =head1 DESCRIPTION
 
