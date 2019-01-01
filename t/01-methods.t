@@ -6,14 +6,14 @@ use Test::More;
 
 use_ok 'Test::NaiveStubs';
 
-my $obj = Test::NaiveStubs->new(
-    class => 'Test::NaiveStubs',
-    name  => 't/test.t',
-);
+my $obj = Test::NaiveStubs->new( class => 'Test::NaiveStubs' );
 isa_ok $obj, 'Test::NaiveStubs';
+
+is $obj->name, 'test-naivestubs.t', 'name';
 
 my $methods = $obj->gather_methods();
 my $expected = {
+    _build_name => undef,
     class => undef,
     create_test => undef,
     gather_methods => undef,
@@ -39,18 +39,17 @@ $text = $obj->unit_test('class');
 $expected = 'ok $obj->class, "class";';
 is $text, $expected, 'unit_test';
 
-my $file = 't/test.t';
-unlink $file;
+unlink $obj->name;
 
 $obj->create_test;
-ok -e $file, 'create_test';
+ok -e $obj->name, 'create_test';
 
 my $data = do { local $/; <DATA> };
-open my $fh, '<', $file or die "Can't read $file: $!";
+open my $fh, '<', $obj->name or die "Can't read " . $obj->name . ": $!";
 my $content = do { local $/; <$fh> };
 is $data, $content, 'test content';
 
-unlink $file;
+unlink $obj->name;
 
 done_testing();
 
