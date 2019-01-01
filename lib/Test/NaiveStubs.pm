@@ -9,7 +9,7 @@ use strictures 2;
 use namespace::clean;
 
 use Package::Stash;
-use Sub::Identify ':all';
+use Sub::Identify 'stash_name';
 
 =head1 SYNOPSIS
 
