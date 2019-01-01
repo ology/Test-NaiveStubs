@@ -48,7 +48,7 @@ ok -e $obj->name, 'create_test';
 my $data = do { local $/; <DATA> };
 open my $fh, '<', $obj->name or die "Can't read " . $obj->name . ": $!";
 my $content = do { local $/; <$fh> };
-is $data, $content, 'test content';
+is $content, $data, 'test content';
 
 unlink $obj->name;
 
