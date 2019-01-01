@@ -90,6 +90,20 @@ has subs => (
     init_arg => undef,
 );
 
+=head2 is_oo
+
+The subroutines contain C<new> and thus object methods are produced by the
+B<unit_test> method.  This is a computed attribute and as such, constructor
+arguments will be ignored.
+
+=cut
+
+has is_oo => (
+    is       => 'rw',
+    init_arg => undef,
+    default  => sub { 0 },
+);
+
 =head1 METHODS
 
 =head2 new()
@@ -144,7 +158,7 @@ sub unit_test {
             . "\n"
             . 'isa_ok $obj, "' . $self->module . '";';
     }
-    elsif ( grep { $_ eq 'new' } keys %{ $self->subs } ) {
+    elsif ( $self->is_oo ) {
         $test = 'ok $obj->can("' . $subroutine . '"), "' . $subroutine . '";';
     }
     else {
@@ -184,14 +198,19 @@ END
     $self->gather_subs;
 
     if ( exists $self->subs->{new} ) {
+        $self->is_oo(1);
+
         my $test = $self->unit_test('new');
+
         $text .= "$test\n\n";
     }
 
     for my $sub ( sort keys %{ $self->subs } ) {
         next if $sub =~ /^_/;
         next if $sub eq 'new';
+
         my $test = $self->unit_test($sub);
+
         $text .= "$test\n\n";
     }
 
