@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods
 
-our $VERSION = '0.0100';
+our $VERSION = '0.0101';
 
 use Moo;
 use strictures 2;
@@ -34,12 +34,13 @@ The class name to use in the test generation.
 =cut
 
 has class => (
-    is => 'ro',
+    is       => 'ro',
+    required => 1,
 );
 
 =head2 name
 
-The test output file name.
+The test output file name. Default: t/test.t
 
 =cut
 
