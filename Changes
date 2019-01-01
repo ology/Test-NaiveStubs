@@ -1,6 +1,7 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Improved documentation.
 
 0.0603 2019-01-01 13:06:13
     - Added eg/stub example program.
