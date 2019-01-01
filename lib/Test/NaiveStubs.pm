@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods and functions
 
-our $VERSION = '0.0600';
+our $VERSION = '0.0601';
 
 use Moo;
 use strictures 2;
@@ -112,15 +112,12 @@ imported methods) as a hash reference.
 sub gather_subs {
     my ($self) = @_;
 
-    my $class = $self->module;
-    eval "require $class";
-    die "Can't load $class: $@" if $@;
-    my $subs = Package::Stash->new($class)->get_all_symbols('CODE');
+    my $subs = Package::Stash->new($self->module)->get_all_symbols('CODE');
 
     my @subs;
     for my $sub ( keys %$subs ) {
         my $packagename = stash_name($subs->{$sub});
-        push @subs, $sub if $packagename eq $class;
+        push @subs, $sub if $packagename eq $self->module;
     }
 
     my %subs;
