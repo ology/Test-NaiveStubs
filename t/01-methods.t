@@ -24,7 +24,11 @@ my $expected = {
 is_deeply $methods, $expected, 'gather_methods';
 
 my $text = $obj->unit_test('new');
-$expected = 'my $obj = ' . $obj->class . '->new();' . "\n" . 'isa_ok $obj, "' . $obj->class . '";';
+$expected = 'use_ok "Test::NaiveStubs";'
+    . "\n\n"
+    . 'my $obj = ' . $obj->class . '->new();'
+    . "\n"
+    . 'isa_ok $obj, "' . $obj->class . '";';
 is $text, $expected, 'unit_test';
 
 $text = $obj->unit_test('gather_methods');
@@ -53,6 +57,8 @@ use strict;
 use warnings;
 
 use Test::More;
+
+use_ok "Test::NaiveStubs";
 
 my $obj = Test::NaiveStubs->new();
 isa_ok $obj, "Test::NaiveStubs";
