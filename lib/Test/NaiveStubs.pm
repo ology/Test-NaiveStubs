@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods
 
-our $VERSION = '0.0202';
+our $VERSION = '0.0300';
 
 use Moo;
 use strictures 2;
@@ -115,7 +115,7 @@ sub unit_test {
             . 'isa_ok $obj, "' . $self->class . '";';
     }
     else {
-        $test = 'ok $obj->' . $subroutine . ', "' . $subroutine . '";';
+        $test = 'ok $obj->can("' . $subroutine . '"), "' . $subroutine . '";';
     }
 
     return $test;
