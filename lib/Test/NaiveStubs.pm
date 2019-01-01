@@ -88,7 +88,7 @@ sub unit_test {
     my $test = '';
 
     if ( $subroutine eq 'new' ) {
-        $test = '$obj = ' . $self->class . '->new();'
+        $test = 'my $obj = ' . $self->class . '->new();'
             . "\n"
             . 'isa_ok $obj, "' . $self->class . '";';
     }

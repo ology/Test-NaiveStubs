@@ -54,7 +54,7 @@ use warnings;
 
 use Test::More;
 
-$obj = Test::NaiveStubs->new();
+my $obj = Test::NaiveStubs->new();
 isa_ok $obj, "Test::NaiveStubs";
 
 ok $obj->class, "class";
