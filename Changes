@@ -1,6 +1,9 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Improved documentation.
+
+0.0201 2019-01-01 03:50:58
     - Added forgotten done_testing() call.
 
 0.0200 2019-01-01 00:58:54
