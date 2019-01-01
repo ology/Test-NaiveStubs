@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods and functions
 
-our $VERSION = '0.0401';
+our $VERSION = '0.0500';
 
 use Moo;
 use strictures 2;
