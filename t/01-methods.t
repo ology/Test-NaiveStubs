@@ -74,3 +74,4 @@ ok $obj->name, "name";
 
 ok $obj->unit_test, "unit_test";
 
+done_testing();
