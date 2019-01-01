@@ -142,6 +142,7 @@ END
     }
 
     for my $method ( sort keys %$methods ) {
+        next if $method =~ /^_/;
         my $test = $self->unit_test($method);
         $text .= "$test\n\n";
     }
