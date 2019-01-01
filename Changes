@@ -1,6 +1,9 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Added crucial usage line to the synopsis.
+
+0.0101 2019-01-01 00:12:08
     - Improved documentation.
     - Made the class attribute required.
 
