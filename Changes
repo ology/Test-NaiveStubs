@@ -1,6 +1,9 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Added eg/stub example program.
+
+0.0602 2019-01-01 11:42:53
     - Remove forgotten and no-longer necessary disclaimer.
 
 0.0601 2019-01-01 11:39:27
