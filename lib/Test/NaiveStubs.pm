@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods and functions
 
-our $VERSION = '0.0300';
+our $VERSION = '0.0400';
 
 use Moo;
 use strictures 2;
@@ -14,33 +14,33 @@ use Class::Sniff;
 
   use Test::NaiveStubs;
   my $tns = Test::NaiveStubs->new(
-    class => 'Foo::Bar',
-    name  => 't/foo-bar.t',
+    module => 'Foo::Bar',
+    name   => 't/foo-bar.t',
   );
   $tns->create_test;
 
 =head1 DESCRIPTION
 
 C<Test::NaiveStubs> generates a test file of stubs exercising all the methods or
-functions of a given module (the B<class> attribute).
+functions of a given module (the B<module> attribute).
 
 Unfortunately L<Class::Sniff> returns I<imported> methods as well as the ones in
-the B<class> you have given.  So you will have to remove those lines from the
+the B<module> you have given.  So you will have to remove those lines from the
 generated test file by hand.
 
 For a more powerful alternative, check out L<Test::StubGenerator>.
 
 =head1 ATTRIBUTES
 
-=head2 class
+=head2 module
 
-  $class = $tns->class;
+  $module = $tns->module;
 
-The class name to use in the test generation.
+The module name to use in the test generation.
 
 =cut
 
-has class => (
+has module => (
     is       => 'ro',
     required => 1,
 );
@@ -50,7 +50,7 @@ has class => (
   $name = $tns->name;
 
 The test output file name.  If not given in the constructor, the filename is
-created from the B<class>.  So C<Foo::Bar> would be converted to C<foo-bar.t>.
+created from the B<module>.  So C<Foo::Bar> would be converted to C<foo-bar.t>.
 
 =cut
 
@@ -61,7 +61,7 @@ has name => (
 
 sub _build_name {
     my ($self) = @_;
-    ( my $name = $self->class ) =~ s/::/-/g;
+    ( my $name = $self->module ) =~ s/::/-/g;
     $name = lc $name;
     return "$name.t";
 }
@@ -78,7 +78,7 @@ Create a new C<Test::NaiveStubs> object.
 
   $methods = $tns->gather_methods;
 
-Return the methods of the given B<class>, as well as imported methods, as a hash
+Return the methods of the given B<module>, as well as imported methods, as a hash
  reference.
 
 =cut
@@ -86,7 +86,7 @@ Return the methods of the given B<class>, as well as imported methods, as a hash
 sub gather_methods {
     my ($self) = @_;
 
-    my $sniff = Class::Sniff->new({ class => $self->class });
+    my $sniff = Class::Sniff->new({ class => $self->module });
     my @methods = $sniff->methods;
     my %methods;
     @methods{@methods} = undef;
@@ -108,11 +108,11 @@ sub unit_test {
     my $test = '';
 
     if ( $subroutine eq 'new' ) {
-        $test = 'use_ok "' . $self->class . '";'
+        $test = 'use_ok "' . $self->module . '";'
             . "\n\n"
-            . 'my $obj = ' . $self->class . '->new;'
+            . 'my $obj = ' . $self->module . '->new;'
             . "\n"
-            . 'isa_ok $obj, "' . $self->class . '";';
+            . 'isa_ok $obj, "' . $self->module . '";';
     }
     else {
         $test = 'ok $obj->can("' . $subroutine . '"), "' . $subroutine . '";';
