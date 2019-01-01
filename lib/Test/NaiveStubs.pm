@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods and functions
 
-our $VERSION = '0.0502';
+our $VERSION = '0.0503';
 
 use Moo;
 use strictures 2;
@@ -12,16 +12,21 @@ use Class::Sniff;
 
 =head1 SYNOPSIS
 
+  use Foo::Bar;
   use Test::NaiveStubs;
+
   my $tns = Test::NaiveStubs->new(
     module => 'Foo::Bar',
     name   => 't/foo-bar.t',
   );
+
   $tns->create_test;
 
   # Or on the command-line:
+
   # perl -MData::Dumper -MFoo::Bar -MTest::NaiveStubs -E \
   #   '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->gather_subs; say Dumper $tns->subs'
+
   # perl -MFoo::Bar -MTest::NaiveStubs -E \
   #   '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->create_test'
 
