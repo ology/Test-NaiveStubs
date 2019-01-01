@@ -1,6 +1,11 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Improved documentation.
+    - Replaced name attribute default with a class name builder.
+    - Improved test cases accordingly.
+
+0.0102 2019-01-01 00:21:14
     - Added crucial usage line to the synopsis.
 
 0.0101 2019-01-01 00:12:08
