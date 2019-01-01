@@ -16,20 +16,20 @@ use Sub::Identify 'stash_name';
   #use Foo::Bar; # <- Uncomment to load and inspect the module
   use Test::NaiveStubs;
 
-  my $tns = Test::NaiveStubs->new(
+  my $t = Test::NaiveStubs->new(
     module => 'Foo::Bar',
     name   => 't/foo-bar.t',
   );
 
-  $tns->create_test;
+  $t->create_test;
 
   # Or on the command-line:
 
   # perl -MData::Dumper -MFoo::Bar -MTest::NaiveStubs -E \
-  #   '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->gather_subs; say Dumper $tns->subs'
+  #   '$t = Test::NaiveStubs->new(module => "Foo::Bar"); $t->gather_subs; say Dumper $t->subs'
 
   # perl -MFoo::Bar -MTest::NaiveStubs -E \
-  #   '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->create_test'
+  #   '$t = Test::NaiveStubs->new(module => "Foo::Bar"); $t->create_test'
 
 =head1 DESCRIPTION
 
@@ -42,7 +42,7 @@ For a more powerful alternative, check out L<Test::StubGenerator>.
 
 =head2 module
 
-  $module = $tns->module;
+  $module = $t->module;
 
 The module name to use in the test generation.  This is a required attribute.
 
@@ -55,7 +55,7 @@ has module => (
 
 =head2 name
 
-  $name = $tns->name;
+  $name = $t->name;
 
 The test output file name.  If not given in the constructor, the filename is
 created from the B<module>.  So C<Foo::Bar> would be converted to C<foo-bar.t>.
@@ -76,7 +76,7 @@ sub _build_name {
 
 =head2 subs
 
-  $subs = $tns->subs;
+  $subs = $t->subs;
 
 The subroutines in the given B<module>.  This is a computed attribute and as
 such, constructor arguments will be ignored.
@@ -92,13 +92,13 @@ has subs => (
 
 =head2 new()
 
-  $tns = Test::NaiveStubs->new(%arguments);
+  $t = Test::NaiveStubs->new(%arguments);
 
 Create a new C<Test::NaiveStubs> object.
 
 =head2 gather_subs()
 
-  $tns->gather_subs;
+  $t->gather_subs;
 
 Set the B<subs> attribute to the subroutines of the given B<module> (as well as
 imported methods) as a hash reference.
@@ -124,7 +124,7 @@ sub gather_subs {
 
 =head2 unit_test()
 
-  $test = $tns->unit_test($method);
+  $test = $t->unit_test($method);
 
 Return the text of a unit test as described below in B<create_test>.
 
@@ -154,7 +154,7 @@ sub unit_test {
 
 =head2 create_test()
 
-  $tns->create_test;
+  $t->create_test;
 
 Create a test file with unit tests for each method.
 
