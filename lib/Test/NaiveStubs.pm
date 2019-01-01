@@ -91,7 +91,7 @@ sub unit_test {
     if ( $subroutine eq 'new' ) {
         $test = 'use_ok "Test::NaiveStubs";'
             . "\n\n"
-            . 'my $obj = ' . $self->class . '->new(class => "Test::NaiveStubs");'
+            . 'my $obj = ' . $self->class . '->new;'
             . "\n"
             . 'isa_ok $obj, "' . $self->class . '";';
     }
