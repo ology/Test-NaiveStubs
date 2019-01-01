@@ -41,14 +41,22 @@ has class => (
 
 =head2 name
 
-The test output file name. Default: t/test.t
+The test output file name.  If not given in the constructor, the filename is
+created from the B<class>.  So C<Foo::Bar> would be converted to C<foo-bar.t>.
 
 =cut
 
 has name => (
     is      => 'ro',
-    default => sub { 't/test.t' },
+    builder => 1,
 );
+
+sub _build_name {
+    my ($self) = @_;
+    ( my $name = $self->class ) =~ s/::/-/g;
+    $name = lc $name;
+    return "$name.t";
+}
 
 =head1 METHODS
 
