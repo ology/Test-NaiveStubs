@@ -20,8 +20,10 @@ use Class::Sniff;
   $tns->create_test;
 
   # Or on the command-line:
-  perl -MData::Dumper -MFoo::Bar -MTest::NaiveStubs -E '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->gather_subs; say Dumper $tns->subs'
-  perl -MFoo::Bar -MTest::NaiveStubs -E '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->create_test'
+  # perl -MData::Dumper -MFoo::Bar -MTest::NaiveStubs -E \
+  #   '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->gather_subs; say Dumper $tns->subs'
+  # perl -MFoo::Bar -MTest::NaiveStubs -E \
+  #   '$tns = Test::NaiveStubs->new(module => "Foo::Bar"); $tns->create_test'
 
 =head1 DESCRIPTION
 
