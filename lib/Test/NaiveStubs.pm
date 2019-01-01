@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods and functions
 
-our $VERSION = '0.0400';
+our $VERSION = '0.0401';
 
 use Moo;
 use strictures 2;
@@ -22,7 +22,7 @@ use Class::Sniff;
 =head1 DESCRIPTION
 
 C<Test::NaiveStubs> generates a test file of stubs exercising all the methods or
-functions of a given module (the B<module> attribute).
+functions of the B<module> attribute.
 
 Unfortunately L<Class::Sniff> returns I<imported> methods as well as the ones in
 the B<module> you have given.  So you will have to remove those lines from the
@@ -78,8 +78,8 @@ Create a new C<Test::NaiveStubs> object.
 
   $methods = $tns->gather_methods;
 
-Return the methods of the given B<module>, as well as imported methods, as a hash
- reference.
+Return the methods of the given B<module> (as well as imported methods) as a
+hash reference.
 
 =cut
 
@@ -98,7 +98,7 @@ sub gather_methods {
 
   $test = $tns->unit_test($method);
 
-Return the text of a method unit test.
+Return the text of a unit test as described below in B<create_test>.
 
 =cut
 
