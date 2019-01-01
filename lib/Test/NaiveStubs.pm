@@ -128,7 +128,7 @@ sub unit_test {
             . "\n"
             . 'isa_ok $obj, "' . $self->module . '";';
     }
-    elsif ( grep { 'new' } $self->subs ) {
+    elsif ( grep { $_ eq 'new' } keys %{ $self->subs } ) {
         $test = 'ok $obj->can("' . $subroutine . '"), "' . $subroutine . '";';
     }
     else {
