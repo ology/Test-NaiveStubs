@@ -13,4 +13,5 @@ my $t = Test::NaiveStubs->new( module => $module );
 
 $t->create_test;
 
+#$t->gather_subs;
 #use Data::Dumper;warn(__PACKAGE__,' ',__LINE__," MARK: ",Dumper$t->subs);
