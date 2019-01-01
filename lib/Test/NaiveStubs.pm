@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods and functions
 
-our $VERSION = '0.0501';
+our $VERSION = '0.0502';
 
 use Moo;
 use strictures 2;
@@ -30,7 +30,7 @@ use Class::Sniff;
 C<Test::NaiveStubs> generates a test file of stubs exercising all the methods or
 functions of the B<module> attribute.
 
-Unfortunately L<Class::Sniff> returns any <imported> methods as well as the ones
+Unfortunately L<Class::Sniff> returns any I<imported> methods as well as the ones
 in the B<module> you have given.  So you will have to remove those lines from
 the generated test file by hand.
 
