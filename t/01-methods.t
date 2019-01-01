@@ -50,6 +50,8 @@ open my $fh, '<', $file or die "Can't read $file: $!";
 my $content = do { local $/; <$fh> };
 is $data, $content, 'test content';
 
+unlink $file;
+
 done_testing();
 
 __DATA__
