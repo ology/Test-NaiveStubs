@@ -36,6 +36,8 @@ $expected = 'ok $obj->class, "class";';
 is $text, $expected, 'unit_test';
 
 my $file = 't/test.t';
+unlink $file;
+
 $obj->create_test;
 ok -e $file, 'create_test';
 
