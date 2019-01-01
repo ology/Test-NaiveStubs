@@ -32,11 +32,11 @@ $expected = 'use_ok "Test::NaiveStubs";'
 is $text, $expected, 'unit_test';
 
 $text = $obj->unit_test('gather_methods');
-$expected = 'ok $obj->gather_methods, "gather_methods";';
+$expected = 'ok $obj->can("gather_methods"), "gather_methods";';
 is $text, $expected, 'unit_test';
 
 $text = $obj->unit_test('class');
-$expected = 'ok $obj->class, "class";';
+$expected = 'ok $obj->can("class"), "class";';
 is $text, $expected, 'unit_test';
 
 unlink $obj->name;
@@ -64,14 +64,14 @@ use_ok "Test::NaiveStubs";
 my $obj = Test::NaiveStubs->new;
 isa_ok $obj, "Test::NaiveStubs";
 
-ok $obj->class, "class";
+ok $obj->can("class"), "class";
 
-ok $obj->create_test, "create_test";
+ok $obj->can("create_test"), "create_test";
 
-ok $obj->gather_methods, "gather_methods";
+ok $obj->can("gather_methods"), "gather_methods";
 
-ok $obj->name, "name";
+ok $obj->can("name"), "name";
 
-ok $obj->unit_test, "unit_test";
+ok $obj->can("unit_test"), "unit_test";
 
 done_testing();
