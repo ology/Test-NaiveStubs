@@ -1,6 +1,10 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Renamed the "class" attribute to "module".
+    - Improved documentation.
+
+0.0300 2019-01-01 07:06:17
     - Make the non-constructor unit tests be "ok can(method)" assertions.
     - Improved documentation.
 
