@@ -1,6 +1,9 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Fixed SYNOPSIS section.
+
+0.0502 2019-01-01 09:34:16
     - Improved documentation once again.
 
 0.0501 2019-01-01 09:25:23
