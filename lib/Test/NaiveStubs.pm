@@ -28,7 +28,7 @@ use Class::Sniff;
 =head1 DESCRIPTION
 
 C<Test::NaiveStubs> generates a test file of stubs exercising all the methods or
-functions of the B<module> attribute.
+functions of the given B<module>.
 
 Unfortunately L<Class::Sniff> returns any I<imported> methods as well as the ones
 in the B<module> you have given.  So you will have to remove those lines from
@@ -42,7 +42,7 @@ For a more powerful alternative, check out L<Test::StubGenerator>.
 
   $module = $tns->module;
 
-The module name to use in the test generation.
+The module name to use in the test generation.  This is a required attribute.
 
 =cut
 
