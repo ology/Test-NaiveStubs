@@ -168,13 +168,13 @@ END
     $self->gather_subs;
 
     if ( exists $self->subs->{new} ) {
-        delete $self->subs->{new};
         my $test = $self->unit_test('new');
         $text .= "$test\n\n";
     }
 
     for my $sub ( sort keys %{ $self->subs } ) {
         next if $sub =~ /^_/;
+        next if $sub eq 'new';
         my $test = $self->unit_test($sub);
         $text .= "$test\n\n";
     }
