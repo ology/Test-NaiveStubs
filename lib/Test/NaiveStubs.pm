@@ -44,7 +44,8 @@ The test output file name.
 =cut
 
 has name => (
-    is => 'ro',
+    is      => 'ro',
+    default => sub { 't/test.t' },
 );
 
 =head1 METHODS
@@ -90,7 +91,7 @@ sub unit_test {
     if ( $subroutine eq 'new' ) {
         $test = 'use_ok "Test::NaiveStubs";'
             . "\n\n"
-            . 'my $obj = ' . $self->class . '->new();'
+            . 'my $obj = ' . $self->class . '->new(class => "Test::NaiveStubs");'
             . "\n"
             . 'isa_ok $obj, "' . $self->class . '";';
     }
