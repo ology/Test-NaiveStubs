@@ -1,6 +1,8 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Make the non-constructor unit tests be "ok can(method)" assertions.
+    - Improved documentation.
 
 0.0202 2019-01-01 03:59:00
     - Improved documentation.
