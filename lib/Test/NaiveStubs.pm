@@ -36,10 +36,6 @@ use Sub::Identify 'stash_name';
 C<Test::NaiveStubs> generates a test file of stubs exercising all the methods or
 functions of the given B<module>.
 
-Unfortunately L<Class::Sniff> returns any I<imported> methods as well as the ones
-in the B<module> you have given.  So you will have to remove those lines from
-the generated test file by hand.
-
 For a more powerful alternative, check out L<Test::StubGenerator>.
 
 =head1 ATTRIBUTES
