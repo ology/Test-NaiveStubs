@@ -21,7 +21,7 @@ use Class::Sniff;
 
 =head1 DESCRIPTION
 
-A C<Test::NaiveStubs> generates a test file of stubs for exercising all the
+C<Test::NaiveStubs> generates a test file of stubs for exercising all the
 methods (not functions) of a given B<class>.
 
 For a more powerful alternative, check out L<Test::StubGenerator>.
