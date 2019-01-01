@@ -1,6 +1,10 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Refactored the gather_subs() logic to exclude all but the module subroutines.
+    - Improved documentation.
+
+0.0503 2019-01-01 09:58:12
     - Fixed SYNOPSIS section.
 
 0.0502 2019-01-01 09:34:16
