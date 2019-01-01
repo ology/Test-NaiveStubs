@@ -1,6 +1,9 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Improved documentation.
+
+0.0400 2019-01-01 07:31:47
     - Renamed the "class" attribute to "module".
     - Improved documentation.
 
