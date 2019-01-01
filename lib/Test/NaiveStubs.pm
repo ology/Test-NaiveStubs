@@ -125,7 +125,7 @@ sub create_test {
 
     open my $fh, '>', $self->name or die "Can't write " . $self->name . ": $!";
 
-    my $text =<<"END";
+    my $text =<<'END';
 use strict;
 use warnings;
 
