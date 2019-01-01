@@ -88,24 +88,24 @@ has subs => (
 
 Create a new C<Test::NaiveStubs> object.
 
-=head2 gather_methods()
+=head2 gather_subs()
 
-  $methods = $tns->gather_methods;
+  $tns->gather_subs;
 
-Return the methods of the given B<module> (as well as imported methods) as a
-hash reference.
+Set the B<subs> attribute to the subroutines of the given B<module> (as well as
+imported methods) as a hash reference.
 
 =cut
 
-sub gather_methods {
+sub gather_subs {
     my ($self) = @_;
 
     my $sniff = Class::Sniff->new({ class => $self->module });
-    my @methods = $sniff->methods;
-    my %methods;
-    @methods{@methods} = undef;
+    my @subs = $sniff->methods;
+    my %subs;
+    @subs{@subs} = undef;
 
-    $self->subs( \%methods );
+    $self->subs( \%subs );
 }
 
 =head2 unit_test()
@@ -131,6 +131,9 @@ sub unit_test {
     elsif ( grep { 'new' } $self->subs ) {
         $test = 'ok $obj->can("' . $subroutine . '"), "' . $subroutine . '";';
     }
+    else {
+        $test = "ok $subroutine(), " . '"' . $subroutine . '";';
+    }
 
     return $test;
 }
@@ -143,7 +146,8 @@ Create a test file with unit tests for each method.
 
 A C<new> method is extracted and processed first with C<use_ok>, object
 instantiation, followed by C<isa_ok>.  Then each seen method is returned as
-an ok can("method") assertion.
+an ok can("method") assertion.  If no C<new> method is present, an C<ok> with
+the subroutine is produced.
 
 =cut
 
@@ -161,7 +165,7 @@ use Test::More;
 END
 
     # Set the subs attribute
-    $self->gather_methods;
+    $self->gather_subs;
 
     if ( exists $self->subs->{new} ) {
         delete $self->subs->{new};

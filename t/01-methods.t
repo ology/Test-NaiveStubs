@@ -11,17 +11,18 @@ isa_ok $obj, 'Test::NaiveStubs';
 
 is $obj->name, 'test-naivestubs.t', 'name';
 
-my $methods = $obj->gather_methods();
+my $methods = $obj->gather_subs();
 my $expected = {
     _build_name => undef,
     module => undef,
     create_test => undef,
-    gather_methods => undef,
+    gather_subs => undef,
     name => undef,
     new => undef,
+    subs => undef,
     unit_test => undef,
 };
-is_deeply $methods, $expected, 'gather_methods';
+is_deeply $methods, $expected, 'gather_subs';
 
 my $text = $obj->unit_test('new');
 $expected = 'use_ok "Test::NaiveStubs";'
@@ -31,8 +32,8 @@ $expected = 'use_ok "Test::NaiveStubs";'
     . 'isa_ok $obj, "' . $obj->module . '";';
 is $text, $expected, 'unit_test';
 
-$text = $obj->unit_test('gather_methods');
-$expected = 'ok $obj->can("gather_methods"), "gather_methods";';
+$text = $obj->unit_test('gather_subs');
+$expected = 'ok $obj->can("gather_subs"), "gather_subs";';
 is $text, $expected, 'unit_test';
 
 $text = $obj->unit_test('module');
@@ -66,11 +67,13 @@ isa_ok $obj, "Test::NaiveStubs";
 
 ok $obj->can("create_test"), "create_test";
 
-ok $obj->can("gather_methods"), "gather_methods";
+ok $obj->can("gather_subs"), "gather_subs";
 
 ok $obj->can("module"), "module";
 
 ok $obj->can("name"), "name";
+
+ok $obj->can("subs"), "subs";
 
 ok $obj->can("unit_test"), "unit_test";
 
