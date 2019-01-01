@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods and functions
 
-our $VERSION = '0.0602';
+our $VERSION = '0.0603';
 
 use Moo;
 use strictures 2;
@@ -203,6 +203,9 @@ END
 __END__
 
 =head1 SEE ALSO
+
+The F<eg/stub> example program and the F<t/01-methods.t> test in this
+distribution
 
 L<Moo>
 
