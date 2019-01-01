@@ -4,7 +4,7 @@ use warnings;
 
 use Test::NaiveStubs;
 
-my $module = shift || die "Usage: perl $0 Some::Module\n";
+my $module = shift or die "Usage: perl $0 Some::Module\n";
 
 eval "require $module";
 die "Can't require $module: $@" if $@;
