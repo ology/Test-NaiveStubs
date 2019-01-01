@@ -1,6 +1,9 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Remove forgotten and no-longer necessary disclaimer.
+
+0.0601 2019-01-01 11:39:27
     - Removed unneeded code.
 
 0.0600 2019-01-01 11:34:29
