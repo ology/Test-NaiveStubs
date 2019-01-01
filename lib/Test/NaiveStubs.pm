@@ -28,7 +28,7 @@ use Class::Sniff;
 C<Test::NaiveStubs> generates a test file of stubs exercising all the methods or
 functions of the B<module> attribute.
 
-Unfortunately L<Class::Sniff> returns Iny <imported> methods as well as the ones
+Unfortunately L<Class::Sniff> returns any <imported> methods as well as the ones
 in the B<module> you have given.  So you will have to remove those lines from
 the generated test file by hand.
 
