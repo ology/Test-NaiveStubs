@@ -127,6 +127,10 @@ sub unit_test {
 
 Create a test file with unit tests for each method.
 
+A C<new> method is extracted and processed first with C<use_ok>, object
+instantiation, followed by C<isa_ok>.  Then each seen method is returned as
+an ok can("method") assertion.
+
 =cut
 
 sub create_test {
