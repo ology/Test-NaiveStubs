@@ -8,11 +8,12 @@ use Moo;
 use strictures 2;
 use namespace::clean;
 
-use Class::Sniff;
+use Package::Stash;
+use Sub::Identify ':all';
 
 =head1 SYNOPSIS
 
-  #use Foo::Bar; # <- Uncomment to load the Foo::Bar module
+  #use Foo::Bar; # <- Uncomment to load and inspect the module
   use Test::NaiveStubs;
 
   my $tns = Test::NaiveStubs->new(
@@ -111,8 +112,17 @@ imported methods) as a hash reference.
 sub gather_subs {
     my ($self) = @_;
 
-    my $sniff = Class::Sniff->new({ class => $self->module });
-    my @subs = $sniff->methods;
+    my $class = $self->module;
+    eval "require $class";
+    die "Can't load $class: $@" if $@;
+    my $subs = Package::Stash->new($class)->get_all_symbols('CODE');
+
+    my @subs;
+    for my $sub ( keys %$subs ) {
+        my $packagename = stash_name($subs->{$sub});
+        push @subs, $sub if $packagename eq $class;
+    }
+
     my %subs;
     @subs{@subs} = undef;
 
@@ -203,6 +213,16 @@ __END__
 
 L<Moo>
 
-L<Class::Sniff>
+L<Package::Stash>
+
+L<Sub::Identify>
+
+=head1 THANK YOU
+
+For helping me understand how to gather the subroutines:
+
+Dan Book (DBOOK)
+
+Matt S Trout (MSTROUT)
 
 =cut
