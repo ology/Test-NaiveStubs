@@ -21,6 +21,7 @@ my $expected = {
     new => undef,
     subs => undef,
     unit_test => undef,
+    is_oo => undef,
 };
 is_deeply $methods, $expected, 'gather_subs';
 
@@ -32,12 +33,12 @@ $expected = 'use_ok "Test::NaiveStubs";'
     . 'isa_ok $obj, "' . $obj->module . '";';
 is $text, $expected, 'unit_test';
 
-$text = $obj->unit_test('gather_subs');
-$expected = 'ok $obj->can("gather_subs"), "gather_subs";';
+$text = $obj->unit_test('foo');
+$expected = 'ok foo(), "foo";';
 is $text, $expected, 'unit_test';
 
-$text = $obj->unit_test('module');
-$expected = 'ok $obj->can("module"), "module";';
+$text = $obj->unit_test('bar');
+$expected = 'ok bar(), "bar";';
 is $text, $expected, 'unit_test';
 
 unlink $obj->name;
@@ -68,6 +69,8 @@ isa_ok $obj, "Test::NaiveStubs";
 ok $obj->can("create_test"), "create_test";
 
 ok $obj->can("gather_subs"), "gather_subs";
+
+ok $obj->can("is_oo"), "is_oo";
 
 ok $obj->can("module"), "module";
 
