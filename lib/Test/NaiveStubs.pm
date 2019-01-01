@@ -2,7 +2,7 @@ package Test::NaiveStubs;
 
 # ABSTRACT: Generate test stubs for methods
 
-our $VERSION = '0.0201';
+our $VERSION = '0.0202';
 
 use Moo;
 use strictures 2;
@@ -24,11 +24,17 @@ use Class::Sniff;
 C<Test::NaiveStubs> generates a test file of stubs for exercising all the
 methods (not functions) of a given B<class>.
 
+Unfortunately L<Class::Sniff> returns I<imported> methods as well as the ones in
+the B<class> you have given.  So you will have to remove those lines from the
+generated test file by hand.
+
 For a more powerful alternative, check out L<Test::StubGenerator>.
 
 =head1 ATTRIBUTES
 
 =head2 class
+
+  $class = $tns->class;
 
 The class name to use in the test generation.
 
@@ -40,6 +46,8 @@ has class => (
 );
 
 =head2 name
+
+  $name = $tns->name;
 
 The test output file name.  If not given in the constructor, the filename is
 created from the B<class>.  So C<Foo::Bar> would be converted to C<foo-bar.t>.
@@ -70,7 +78,8 @@ Create a new C<Test::NaiveStubs> object.
 
   $methods = $tns->gather_methods;
 
-Return the methods of the given B<class> as a hash reference.
+Return the methods of the given B<class>, as well as imported methods, as a hash
+ reference.
 
 =cut
 
