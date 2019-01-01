@@ -1,6 +1,11 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Rename the gather_methods() method to gather_subs().
+    - Hold the gathered subroutines in a new subs attribute.
+    - Handle unit_test() differently for non-object modules.
+
+0.0401 2019-01-01 07:51:47
     - Improved documentation.
 
 0.0400 2019-01-01 07:31:47
