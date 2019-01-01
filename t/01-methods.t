@@ -12,23 +12,23 @@ my $obj = Test::NaiveStubs->new(
 );
 isa_ok $obj, 'Test::NaiveStubs';
 
-my $subs = $obj->gather_subs();
+my $methods = $obj->gather_methods();
 my $expected = {
     class => undef,
     create_test => undef,
-    gather_subs => undef,
+    gather_methods => undef,
     name => undef,
     new => undef,
     unit_test => undef,
 };
-is_deeply $subs, $expected, 'subs';
+is_deeply $methods, $expected, 'gather_methods';
 
 my $text = $obj->unit_test('new');
 $expected = '$obj = ' . $obj->class . '->new();' . "\n" . 'isa_ok $obj, "' . $obj->class . '";';
 is $text, $expected, 'unit_test';
 
-$text = $obj->unit_test('gather_subs');
-$expected = 'ok $obj->gather_subs, "gather_subs";';
+$text = $obj->unit_test('gather_methods');
+$expected = 'ok $obj->gather_methods, "gather_methods";';
 is $text, $expected, 'unit_test';
 
 $text = $obj->unit_test('class');
@@ -59,7 +59,7 @@ ok $obj->class, "class";
 
 ok $obj->create_test, "create_test";
 
-ok $obj->gather_subs, "gather_subs";
+ok $obj->gather_methods, "gather_methods";
 
 ok $obj->name, "name";
 

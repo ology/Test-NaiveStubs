@@ -20,7 +20,10 @@ use Class::Sniff;
 
 =head1 DESCRIPTION
 
-A C<Test::NaiveStubs> generates test stubs for methods.
+A C<Test::NaiveStubs> generates a test file of stubs for exercising all the
+methods (not functions) of a given B<class>.
+
+For a more powerful alternative, check out L<Test::StubGenerator>.
 
 =head1 ATTRIBUTES
 
@@ -52,13 +55,15 @@ has name => (
 
 Create a new C<Test::NaiveStubs> object.
 
-=head2 gather_subs()
+=head2 gather_methods()
+
+  $methods = $tns->gather_methods;
 
 Return the methods of the given B<class> as a hash reference.
 
 =cut
 
-sub gather_subs {
+sub gather_methods {
     my ($self) = @_;
 
     my $sniff = Class::Sniff->new({ class => $self->class });
@@ -69,7 +74,9 @@ sub gather_subs {
     return \%methods;
 }
 
-=head2 unit_test
+=head2 unit_test()
+
+  $test = $tns->unit_test($method);
 
 Return the text of a method unit test.
 
@@ -92,7 +99,9 @@ sub unit_test {
     return $test;
 }
 
-=head2 create_test
+=head2 create_test()
+
+  $tns->create_test;
 
 Create a test file with unit tests for each method.
 
@@ -111,16 +120,16 @@ use Test::More;
 
 END
 
-    my $subs = $self->gather_subs;
+    my $methods = $self->gather_methods;
 
-    if ( exists $subs->{new} ) {
-        delete $subs->{new};
+    if ( exists $methods->{new} ) {
+        delete $methods->{new};
         my $test = $self->unit_test('new');
         $text .= "$test\n\n";
     }
 
-    for my $sub ( sort keys %$subs ) {
-        my $test = $self->unit_test($sub);
+    for my $method ( sort keys %$methods ) {
+        my $test = $self->unit_test($method);
         $text .= "$test\n\n";
     }
 
