@@ -147,6 +147,9 @@ END
         $text .= "$test\n\n";
     }
 
+    $text .= 'done_testing();
+';
+
     print $fh $text;
 }
 
