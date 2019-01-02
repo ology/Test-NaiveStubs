@@ -12,6 +12,6 @@ die "Can't require $module: $@" if $@;
 my $t = Test::NaiveStubs->new( module => $module );
 
 #$t->gather_subs;
-#use Data::Dumper;warn(__PACKAGE__,' ',__LINE__," MARK: ",Dumper$t->subs);
+#use Data::Dumper;warn(__PACKAGE__,' ',__LINE__," MARK: ",Dumper$t->subs); exit;
 
 $t->create_test;
