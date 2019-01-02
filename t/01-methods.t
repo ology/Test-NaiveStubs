@@ -28,9 +28,9 @@ is_deeply $methods, $expected, 'gather_subs';
 my $text = $obj->unit_test('new');
 $expected = 'use_ok "Test::NaiveStubs";'
     . "\n\n"
-    . 'my $obj = ' . $obj->module . '->new;'
+    . 'my $obj = Test::NaiveStubs->new;'
     . "\n"
-    . 'isa_ok $obj, "' . $obj->module . '";';
+    . 'isa_ok $obj, "Test::NaiveStubs";';
 is $text, $expected, 'unit_test';
 
 $text = $obj->unit_test('foo');
