@@ -1,6 +1,7 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Enhanced eg/stub.
 
 0.0701 2019-01-01 16:21:08
     - Simplified the expected new unit test text.
