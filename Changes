@@ -1,7 +1,11 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+    - Simplified the expected new unit test text.
+
+0.0700 2019-01-01 15:51:08
     - Added an is_oo attribute to prevent re-grep in unit_test().
+    - Fix non-oo test cases.
 
 0.0604 2019-01-01 14:11:55
     - Improved documentation.
