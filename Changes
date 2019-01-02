@@ -1,6 +1,8 @@
 Revision history for Test-NaiveStubs
 
 {{$NEXT}}
+
+0.0701 2019-01-01 16:21:08
     - Simplified the expected new unit test text.
     - Improved documentation.
 
