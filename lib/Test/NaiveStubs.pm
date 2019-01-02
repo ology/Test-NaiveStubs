@@ -13,13 +13,16 @@ use Sub::Identify 'stash_name';
 
 =head1 SYNOPSIS
 
-  #use Foo::Bar; # <- Uncomment to load and inspect the module
+  #use Foo::Bar; # <- Uncomment to load and process the module
   use Test::NaiveStubs;
 
   my $t = Test::NaiveStubs->new(
     module => 'Foo::Bar',
     name   => 't/foo-bar.t',
   );
+
+  $t->gather_subs;
+  print Dumper $t->subs;
 
   $t->create_test;
 
