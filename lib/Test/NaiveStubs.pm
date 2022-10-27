@@ -4,12 +4,11 @@ package Test::NaiveStubs;
 
 our $VERSION = '0.0702';
 
-use Moo;
 use strictures 2;
-use namespace::clean;
-
-use Package::Stash;
+use Moo;
+use Package::Stash ();
 use Sub::Identify 'stash_name';
+use namespace::clean;
 
 =head1 SYNOPSIS
 
